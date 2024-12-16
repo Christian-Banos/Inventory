@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Inventario de bebidas</h1>
+    <header class="header">
+        <h1>Beverage inventory</h1>
+    </header>
+    <nav id="navbar" class="navbar">
+        <input type="text" name="search" id="search">
+    </nav>
     <table>
         <thead>
             <tr>
-                <th>Bebidas</th>
-                <th>Unidades Disponibles</th>
-                <th>Unidades necesarias</th>
+                <th>Drinks</th>
+                <th>Units needed</th>
+                <th>Category</th>
             </tr>
         </thead>
         <tbody id="inventory">
             <!-- Aqui se generarán las filas dinamicamente -->
         </tbody>
     </table>
-    <button class="button" id="generatePDFButton">Generate message</button>
-    <button class="button" id="clearTableButton">Reset</button>
+    <button class="button" id="generatePDFButton">Generate order</button>
+    <button class="button btn-reset" id="clearTableButton">Reset</button>
 
 
 

@@ -1,9 +1,9 @@
 // Inventario de bebidas
 const inventory = [
-    { name: "Coca Cola", available: 20 },
-    { name: "Fanta", available: 15 },
-    { name: "Sprite", available: 10 },
-    { name: "Agua", available: 50 },
+    { name: "Coca Cola", category: 'Soft drink' },
+    { name: "Fanta", category: 'Soft drink' },
+    { name: "Sprite", category: 'Soft drink' },
+    { name: "Agua", category: 'Soft drink' },
   ];
   
   // Referencias a elementos del DOM
@@ -18,10 +18,10 @@ const inventory = [
       const row = document.createElement("tr");
       row.innerHTML = `
           <td>${item.name}</td>
-          <td>${item.available}</td>
           <td>
-            <input type="number" id="needed-${index}" min="0" placeholder="0">
+          <input type="number" id="needed-${index}" min="0" placeholder="0">
           </td>
+          <td>${item.category}</td>
         `;
       inventoryTable.appendChild(row);
     });
@@ -36,9 +36,9 @@ const inventory = [
     const doc = new jsPDF();
   
     let yOffset = 20; // Posición vertical inicial en el PDF
-    doc.setFontSize(14);
-    doc.text("Pedido de Bebidas", 10, 10);
-    doc.setFontSize(12);
+    doc.setFontSize(24);
+    doc.text("Beverage order", 80, 10);
+    doc.setFontSize(16);
   
     let hasOrders = false; // Bandera para saber si hay pedidos
   
@@ -47,7 +47,7 @@ const inventory = [
   
       if (needed > 0) {
         hasOrders = true;
-        doc.text(`${item.name}: ${needed} unidades`, 10, yOffset);
+        doc.text(`${item.name}: ${needed} Units`, 15, yOffset);
         yOffset += 10;
       }
     });
@@ -58,7 +58,7 @@ const inventory = [
     }
   
     // Descargar el PDF
-    doc.save("pedido.pdf");
+    doc.save("Beverage_order.pdf");
   }
   
   // Evento para generar PDF
