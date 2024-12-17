@@ -1,36 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventario de bebidas</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <header class="header">
-        <h1>Beverage inventory</h1>
+      <h1>Beverage inventory</h1>
     </header>
     <nav id="navbar" class="navbar">
-        <input type="text" name="search" id="search">
+      <input
+        type="text"
+        name="search"
+        id="search"
+        class="search"
+        placeholder="Search"
+      />
+      <i class="fa fa-search" id="search-icon"></i>
     </nav>
+
+    <!-- Filtro por categoría -->
+
     <table>
-        <thead>
-            <tr>
-                <th>Drinks</th>
-                <th>Units needed</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody id="inventory">
-            <!-- Aqui se generarán las filas dinamicamente -->
-        </tbody>
+      <thead>
+        <tr>
+          <th>Drinks</th>
+          <th>Units needed</th>
+          <th>
+          <select id="categoryFilter" class="category-filter">
+            <option value="all">Category</option>
+            <option value="Soft drink">Soft drink</option>
+            <option value="Alcoholic">Alcoholic</option>
+            <option value="Alcoholic">Wine</option>
+            <option value="Alcoholic">Spirits</option>
+            <option value="Alcoholic">Coffee</option>
+          </select>
+        </th>
+        </tr>
+      </thead>
+      <tbody id="inventory">
+        <!-- Aqui se generarán las filas dinamicamente -->
+      </tbody>
     </table>
     <button class="button" id="generatePDFButton">Generate order</button>
     <button class="button btn-reset" id="clearTableButton">Reset</button>
 
-
-
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-</body>
+  </body>
 </html>
