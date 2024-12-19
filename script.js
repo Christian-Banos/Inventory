@@ -215,7 +215,7 @@ function generatePDF() {
       doc.setFont("helvetica", "bold"); // Estilo negrita para el nombre
       doc.text(`${name}:`, 15, yOffset);
       doc.setFont("helvetica", "normal"); // Regresa a estilo normal
-      doc.text(`${needed} Units`, 60, yOffset);
+      doc.text(`${needed} Units`, 160, yOffset);
       yOffset += 10;
     }
   });
