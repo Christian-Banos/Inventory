@@ -153,7 +153,6 @@ const generatePDFButton = document.getElementById("generatePDFButton");
 const clearTableButton = document.getElementById("clearTableButton");
 const categoryFilter = document.getElementById("categoryFilter");
 
-
 // Objeto para almacenar cantidades ingresadas
 let inputValues = {};
 
@@ -199,9 +198,11 @@ function generatePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
+  // Ancho de la página actual (para calcular el espaciado relativo)
+  const pageWidth = doc.internal.pageSize.getWidth();
+
   let yOffset = 20; // Posición vertical inicial en el PDF
   const footerY = 280; // Posición del pie de página
-
   doc.setFontSize(24);
   doc.text("Beverage order", 80, 10);
   doc.setFontSize(16);
@@ -212,11 +213,13 @@ function generatePDF() {
     const needed = inputValues[name];
     if (needed > 0) {
       hasOrders = true;
-      doc.setFont("helvetica", "bold"); // Estilo negrita para el nombre
+      // Estilo negrita para el nombre
+      doc.setFont("helvetica", "bold"); 
       doc.text(`${name}:`, 15, yOffset);
-      doc.setFont("helvetica", "normal"); // Regresa a estilo normal
-      doc.text(`${needed} Units`, 160, yOffset);
-      yOffset += 10;
+       // Unidades con espaciado dinámico (usando el ancho de la página)
+       doc.setFont("helvetica", "normal");
+       doc.text(`${needed} Units`, pageWidth - 50, yOffset); // Espaciado ajustado dinámicamente
+       yOffset += 10; // Incremento vertical
     }
   });
 
@@ -225,9 +228,13 @@ function generatePDF() {
     return;
   }
 
-   // Agregar correo electrónico al pie de página
-   doc.setFontSize(12);
-   doc.text("For inquiries, email us at: christiandepaulbp@gmail.com", 15, footerY);
+  // Agregar correo electrónico al pie de página
+  doc.setFontSize(12);
+  doc.text(
+    "For inquiries, email us at: christiandepaulbp@gmail.com",
+    15,
+    footerY
+  );
 
   // Descargar el PDF
   doc.save("Beverage_order.pdf");
